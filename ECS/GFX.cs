@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -16,6 +13,7 @@ namespace ECS
 
         static GameWindow window;
         public static int framecount = 0;
+        public static bool debug = false;
         
         public static int windowWidth, windowHeight;
 
@@ -327,6 +325,9 @@ namespace ECS
 
         private static void Window_RenderFrame(object sender, FrameEventArgs e)
         {
+            if (debug)
+                Debug();
+
             framecount++;
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
@@ -346,6 +347,11 @@ namespace ECS
             GL.Flush();
             window.SwapBuffers();
             shapeList = new List<Shape>();
+        }
+
+        private static void Debug()
+        {
+            Console.WriteLine("Framecount: {0}", framecount);
         }
 
         private static void Window_Load(object sender, EventArgs e)
