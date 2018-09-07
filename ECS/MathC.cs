@@ -6,13 +6,39 @@ using System.Threading.Tasks;
 
 namespace ECS
 {
+    /// <summary>
+    /// Math Class
+    /// </summary>
     public static class MathC
     {
+        /// <summary>
+        /// PI
+        /// </summary>
         public const double PI = 3.14159265359;
+
+        /// <summary>
+        /// PI/2
+        /// </summary>
         public const double HALF_PI = PI / 2;
+
+        /// <summary>
+        /// PI/4
+        /// </summary>
         public const double QUARTER_PI = PI / 4;
+
+        /// <summary>
+        /// TAU
+        /// </summary>
         public const double TAU = PI * 2;
+
+        /// <summary>
+        /// Eulers number
+        /// </summary>
         public const double E = 2.71828182846;
+
+        /// <summary>
+        /// Convert degrees to radians
+        /// </summary>
         public const double DEG2RAD = 0.0174532925;
 
         /// <summary>
@@ -77,6 +103,12 @@ namespace ECS
             return value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static float[,] MatrixMult(float[,] a, float[,] b)
         {          
             float[,] ret = new float[a.GetLength(0),b.GetLength(1)];

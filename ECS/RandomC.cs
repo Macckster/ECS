@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECS
 {
+    /// <summary>
+    /// Class of functions that make use of randomness
+    /// </summary>
     public static class RandomC
     {
         private static System.Random prng = new System.Random();

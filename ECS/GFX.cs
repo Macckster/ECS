@@ -7,15 +7,33 @@ using static ECS.MathC;
 
 namespace ECS
 {
+    /// <summary>
+    /// Graphics class
+    /// </summary>
     public static class GFX
     {
         static List<Shape> shapeList = new List<Shape>();
 
         static GameWindow window;
+        /// <summary>
+        /// Amount of frames since start
+        /// </summary>
         public static int framecount = 0;
+
+        /// <summary>
+        /// Wheter tobe in debug mode or not
+        /// </summary>
         public static bool debug = false;
         
+        /// <summary>
+        /// Height and width of window
+        /// </summary>
         public static int windowWidth, windowHeight;
+
+        /// <summary>
+        /// List of colours
+        /// </summary>
+        public static Colours colours;
 
         private static float thickness = 1;
         private static Color4 colour;
@@ -24,7 +42,7 @@ namespace ECS
         private static List<double> customX = new List<double>();
         private static List<double> customY = new List<double>();
 
-        private static int startFrequency = 60;
+        private static readonly int startFrequency = 60;
 
         /// <summary>
         /// Create a new graphics window
@@ -53,7 +71,7 @@ namespace ECS
         /// <param name="width">Width in pixels of window</param>
         /// <param name="height">Height in pixels of window</param>
         /// <param name="title">Title of the window</param>
-        /// <param name="OnFrameUpdate">Will be called every frame</param>
+        /// <param name="onFrameUpdate">Will be called every frame</param>
         /// <param name="OnLoad">Will be called on load</param>
         /// <returns></returns>
         public static void CreateWindow(int width, int height, string title, EventHandler<FrameEventArgs> onFrameUpdate, EventHandler<EventArgs> OnLoad)
@@ -73,7 +91,7 @@ namespace ECS
         /// <param name="width">Width in pixels of window</param>
         /// <param name="height">Height in pixels of window</param>
         /// <param name="title">Title of the window</param>
-        /// <param name="OnFrameUpdate">Will be called every frame</param>
+        /// <param name="onFrameUpdate">Will be called every frame</param>
         /// <param name="OnLoad">Will be called on load</param>
         /// <param name="OnExit">Will be called when the window exits</param>
         /// <returns></returns>
@@ -138,6 +156,13 @@ namespace ECS
             shapeList.Add(new Shape(colour, PrimitiveType.Polygon, posX, posY));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="radius"></param>
+        /// <param name="degrees"></param>
         public static void Arc(int x, int y, float radius, int degrees)
         {
             double[] posX = new double[degrees];
@@ -370,6 +395,8 @@ namespace ECS
             Console.WriteLine("Resize Detected! New dimensions: {0} x {1}", windowWidth, windowHeight);
             
         }
+
+      
     }
 
     class Shape
@@ -391,5 +418,16 @@ namespace ECS
         {
 
         }
+    }
+
+    /// <summary>
+    /// Colours class
+    /// </summary>
+    public class Colours
+    {
+        /// <summary>
+        /// Gray colour RGB = (128,128,128)
+        /// </summary>
+        public static Color4 Gray = Color4.Gray;
     }
 }
