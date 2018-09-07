@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 using static ECS.MathC;
 
 namespace ECS
@@ -15,6 +16,7 @@ namespace ECS
         static List<Shape> shapeList = new List<Shape>();
 
         static GameWindow window;
+
         /// <summary>
         /// Amount of frames since start
         /// </summary>
@@ -24,16 +26,26 @@ namespace ECS
         /// Wheter tobe in debug mode or not
         /// </summary>
         public static bool debug = false;
-        
-        /// <summary>
-        /// Height and width of window
-        /// </summary>
-        public static int windowWidth, windowHeight;
 
         /// <summary>
-        /// List of colours
+        /// Width of window
         /// </summary>
-        public static Colours colours;
+        public static int windowWidth;
+
+        /// <summary>
+        /// Height of window
+        /// </summary>
+        public static int windowHeight;
+
+        /// <summary>
+        /// X pos of mouse
+        /// </summary>
+        public static int mouseX;
+
+        /// <summary>
+        /// Y pos of mouse
+        /// </summary>
+        public static int mouseY;
 
         private static float thickness = 1;
         private static Color4 colour;
@@ -61,9 +73,9 @@ namespace ECS
             window.UpdateFrame += Window_RenderFrame;
             window.UpdateFrame += OnFrameUpdate;
             window.Resize += Window_Resize;
+            window.MouseMove += Window_MouseMove;
             window.Run(startFrequency);
         }
-
 
         /// <summary>
         /// Create a new graphics window
@@ -82,6 +94,7 @@ namespace ECS
             window.UpdateFrame += Window_RenderFrame;
             window.Load += OnLoad;
             window.Resize += Window_Resize;
+            window.MouseMove += Window_MouseMove;
             window.Run(startFrequency);
         }
 
@@ -105,6 +118,7 @@ namespace ECS
             window.Load += OnLoad;
             window.Unload += OnExit;
             window.Resize += Window_Resize;
+            window.MouseMove += Window_MouseMove;
             window.Run(startFrequency);
         }
 
@@ -157,7 +171,7 @@ namespace ECS
         }
 
         /// <summary>
-        /// 
+        /// Draw a arc
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -222,7 +236,7 @@ namespace ECS
             for (int i = 0; i < 5; i++)
             {
                 posX[i] = Map(posX[i], 0, windowWidth, -1, 1);
-                posY[i] = Map(posY[i], 0, windowHeight, -1, 1);
+                posY[i] = Map(posY[i], 0, windowHeight, 1, -1);
             }
 
             shapeList.Add(new Shape(colour, PrimitiveType.Polygon, posX, posY));
@@ -258,7 +272,7 @@ namespace ECS
             for (int i = 0; i < 5; i++)
             {
                 posX[i] = Map(posX[i], 0, windowWidth, -1, 1);
-                posY[i] = Map(posY[i], 0, windowHeight, -1, 1);
+                posY[i] = Map(posY[i], 0, windowHeight, 1, -1);
             }
 
             shapeList.Add(new Shape(colour, PrimitiveType.Polygon, posX, posY));
@@ -270,8 +284,10 @@ namespace ECS
         /// </summary>
         public static void BeginShape()
         {
-            customShape = new Shape();
-            customShape.p = PrimitiveType.Polygon;
+            customShape = new Shape
+            {
+                p = PrimitiveType.Polygon
+            };
         }
         
         /// <summary>
@@ -301,7 +317,7 @@ namespace ECS
         }
 
         /// <summary>
-        /// Set background to a new colour;
+        /// Set the background colour
         /// </summary>
         /// <param name="c">
         /// Colour of the background
@@ -309,6 +325,53 @@ namespace ECS
         public static void Background(Color4 c)
         {
             GL.ClearColor(c);
+        }
+
+        /// <summary>
+        /// Set the background colour
+        /// </summary>
+        /// <param name="c"></param>
+        public static void Background(Colour c)
+        {
+            float r1 = Map((float)c.r, 0, 255, 0, 1);
+            float g1 = Map((float)c.g, 0, 255, 0, 1);
+            float b1 = Map((float)c.b, 0, 255, 0, 1);
+            float a1 = Map((float)c.a, 0, 255, 0, 1);
+
+            GL.ClearColor(new Color4(r1, g1, b1, a1));
+        }
+
+        /// <summary>
+        /// Set the background colour
+        /// </summary>
+        /// <param name="r">Amount of red (0-255)</param>
+        /// <param name="g">Amount of green (0-255)</param>
+        /// <param name="b">Amount of blue (0-255)</param>
+        public static void Background(int r, int g, int b)
+        {
+            float r1 = Map((float)r, 0, 255, 0, 1);
+            float g1 = Map((float)g, 0, 255, 0, 1);
+            float b1 = Map((float)b, 0, 255, 0, 1);
+            float a1 = 1;
+
+            GL.ClearColor(new Color4(r1, g1, b1, a1));
+        }
+
+        /// <summary>
+        /// Set the background colour
+        /// </summary>
+        /// <param name="r">Amount of red (0-255)</param>
+        /// <param name="g">Amount of green (0-255)</param>
+        /// <param name="b">Amount of blue (0-255)</param>
+        /// <param name="a">Amount of alpha (0-255)</param>
+        public static void Background(int r, int g, int b, int a)
+        {
+            float r1 = Map((float)r, 0, 255, 0, 1);
+            float g1 = Map((float)g, 0, 255, 0, 1);
+            float b1 = Map((float)b, 0, 255, 0, 1);
+            float a1 = Map((float)a, 0, 255, 0, 1);
+
+            GL.ClearColor(new Color4(r1, g1, b1, a1));
         }
 
         /// <summary>
@@ -330,6 +393,62 @@ namespace ECS
         }
 
         /// <summary>
+        /// Set the colour that things will be drawn in
+        /// </summary>
+        /// <param name="c"></param>
+        public static void Colour(Colour c)
+        {
+            float r1 = Map((float)c.r, 0, 255, 0, 1);
+            float g1 = Map((float)c.g, 0, 255, 0, 1);
+            float b1 = Map((float)c.b, 0, 255, 0, 1);
+            float a1 = Map((float)c.a, 0, 255, 0, 1);
+
+            colour = new Color4(r1, g1, b1, a1);
+        }
+
+        /// <summary>
+        /// Set the colour that things will be drawn in
+        /// </summary>
+        /// <param name="r">Amount of red (0-255)</param>
+        /// <param name="g">Amount of green (0-255)</param>
+        /// <param name="b">Amount of blue (0-255)</param>
+        public static void Colour(int r, int g, int b)
+        {
+            float r1 = Map((float)r, 0, 255, 0, 1);
+            float g1 = Map((float)g, 0, 255, 0, 1);
+            float b1 = Map((float)b, 0, 255, 0, 1);
+            float a1 = 1;
+
+            colour = new Color4(r1, g1, b1, a1);
+        }
+
+        /// <summary>
+        /// Set the colour that things will be drawn in
+        /// </summary>
+        /// <param name="r">Amount of red (0-255)</param>
+        /// <param name="g">Amount of green (0-255)</param>
+        /// <param name="b">Amount of blue (0-255)</param>
+        /// <param name="a">Amount of alpha (0-255)</param>
+        public static void Colour(int r, int g, int b, int a)
+        {
+            float r1 = Map((float)r, 0, 255, 0, 1);
+            float g1 = Map((float)g, 0, 255, 0, 1);
+            float b1 = Map((float)b, 0, 255, 0, 1);
+            float a1 = Map((float)a, 0, 255, 0, 1);
+
+            colour = new Color4(r1, g1, b1, a1);
+        }
+
+        /// <summary>
+        /// Add function to be called whenever a mousebutton is pressed
+        /// </summary>
+        /// <param name="e">Function to be called</param>
+        public static void MousePressed(EventHandler<MouseButtonEventArgs> e)
+        {
+            window.MouseDown += e;
+        }
+
+        /// <summary>
         /// Turn on or off Vsync
         /// </summary>
         /// <param name="vsync">
@@ -340,7 +459,7 @@ namespace ECS
             window.VSync = vsync ? VSyncMode.On : VSyncMode.Off;
         }
 
-        /// <summary>s
+        /// <summary>
         /// Close the window
         /// </summary>
         public static void DestroyWindow()
@@ -396,7 +515,12 @@ namespace ECS
             
         }
 
-      
+        private static void Window_MouseMove(object sender, MouseMoveEventArgs e)
+        {
+            mouseX = e.X;
+            mouseY = e.Y;
+        }
+
     }
 
     class Shape
@@ -418,16 +542,5 @@ namespace ECS
         {
 
         }
-    }
-
-    /// <summary>
-    /// Colours class
-    /// </summary>
-    public class Colours
-    {
-        /// <summary>
-        /// Gray colour RGB = (128,128,128)
-        /// </summary>
-        public static Color4 Gray = Color4.Gray;
     }
 }

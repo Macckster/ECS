@@ -70,6 +70,20 @@ namespace ECS
         }
 
         /// <summary>
+        /// Map a number to a range
+        /// </summary>
+        /// <param name="n">Value you want to map</param>
+        /// <param name="start1">Lower bound of the numbers range</param>
+        /// <param name="stop1">Higher bound of the numbers range</param>
+        /// <param name="start2">Lower bound of the outputs range</param>
+        /// <param name="stop2">Higher bound of the outputs range</param>
+        /// <returns>The number remapped to another range</returns>
+        public static int Map(int n, int start1, int stop1, int start2, int stop2)
+        {
+            return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+        }
+
+        /// <summary>
         /// Clamp a number between to values
         /// </summary>
         /// <param name="value">The value to be clamped</param>
@@ -77,6 +91,23 @@ namespace ECS
         /// <param name="higherBound">Highest acceptable value</param>
         /// <returns></returns>
         public static float Clamp(float value, float lowerBound, float higherBound)
+        {
+            if (value <= lowerBound)
+                return lowerBound;
+            if (value >= higherBound)
+                return higherBound;
+
+            return value;
+        }
+
+        /// <summary>
+        /// Clamp a number between to values
+        /// </summary>
+        /// <param name="value">The value to be clamped</param>
+        /// <param name="lowerBound">Lowest acceptable value</param>
+        /// <param name="higherBound">Highest acceptable value</param>
+        /// <returns></returns>
+        public static int Clamp(int value, int lowerBound, int higherBound)
         {
             if (value <= lowerBound)
                 return lowerBound;

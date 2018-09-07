@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colours.cs" />
     <Compile Include="GFX.cs" />
     <Compile Include="MathC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
