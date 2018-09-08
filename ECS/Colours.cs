@@ -10,47 +10,112 @@ namespace ECS
         /// <summary>
         /// Blue colour
         /// </summary>
-        public static Colour Blue = new Colour(0, 0, 255);
+        public readonly static Colour Blue = new Colour(0, 0, 255);
+
+        /// <summary>
+        /// Royal blue colour
+        /// </summary>
+        public readonly static Colour RoyalBlue = new Colour(17, 30, 108);
+
+        /// <summary>
+        /// Navy blue colour
+        /// </summary>
+        public readonly static Colour NavyBlue = new Colour(0, 0, 128);
+
+        /// <summary>
+        /// Azure blue colour
+        /// </summary>
+        public readonly static Colour AzureBlue = new Colour(0, 128, 255);
+
+        /// <summary>
+        /// Space blue colour
+        /// </summary>
+        public readonly static Colour SpaceBlue = new Colour(29,41,81);
+
+        /// <summary>
+        /// Turquoise blue
+        /// </summary>
+        public readonly static Colour TurquoiseBlue = new Colour(63, 224, 208);
 
         /// <summary>
         /// Green colour
         /// </summary>
-        public static Colour Green = new Colour(0, 255, 0);
+        public readonly static Colour Green = new Colour(0, 255, 0);
+
+        /// <summary>
+        /// Forest green colour
+        /// </summary>
+        public readonly static Colour ForestGreen = new Colour(11, 102, 35);
+
+        /// <summary>
+        /// Army green colour
+        /// </summary>
+        public readonly static Colour ArmyGreen = new Colour(75, 83, 32);
+
+        /// <summary>
+        /// Uniform green colour
+        /// </summary>
+        public readonly static Colour UniformGreen = new Colour(68, 76, 56);
+
+        /// <summary>
+        /// Emerald green Colour
+        /// </summary>
+        public readonly static Colour EmeraldGreen = new Colour(80, 220, 100);
+
+        /// <summary>
+        /// Lime green colour
+        /// </summary>
+        public readonly static Colour LimeGreen = new Colour(199, 234, 70);
+
+        /// <summary>
+        /// Olive green colour
+        /// </summary>
+        public readonly static Colour OliveGreen = new Colour(112, 130, 56);
+
+        /// <summary>
+        /// Sacramento green colour
+        /// </summary>
+        public readonly static Colour SacramentoGreen = new Colour(11, 102, 35);
+
+        /// <summary>
+        /// Mint green colour
+        /// </summary>
+        public readonly static Colour MintGreen = new Colour(0, 78, 56);
 
         /// <summary>
         /// Red colour
         /// </summary>
-        public static Colour Red = new Colour(255, 0, 0);
+        public readonly static Colour Red = new Colour(255, 0, 0);
 
         /// <summary>
         /// Black colour
         /// </summary>
-        public static Colour Black = new Colour(0, 0, 0);
+        public readonly static Colour Black = new Colour(0, 0, 0);
 
         /// <summary>
         /// White colour
         /// </summary>
-        public static Colour White = new Colour(255, 255, 255);
+        public readonly static Colour White = new Colour(255, 255, 255);
 
         /// <summary>
         /// Gray colour
         /// </summary>
-        public static Colour Gray = new Colour(125, 125, 125);
+        public readonly static Colour Gray = new Colour(125, 125, 125);
 
         /// <summary>
         /// Pink colour
         /// </summary>
-        public static Colour Pink = new Colour(255, 192, 203);
+        public readonly static Colour Pink = new Colour(255, 192, 203);
 
         /// <summary>
         /// Lightpink colour
         /// </summary>
-        public static Colour LightPink = new Colour(255, 182, 193);
+        public readonly static Colour LightPink = new Colour(255, 182, 193);
 
         /// <summary>
         /// Hotpink colour
         /// </summary>
-        public static Colour Hotpink = new Colour(255, 105, 180);
+        public readonly static Colour Hotpink = new Colour(255, 105, 180);
     }
 
     /// <summary>

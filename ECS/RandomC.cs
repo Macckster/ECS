@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECS
 {
@@ -11,7 +8,7 @@ namespace ECS
     /// </summary>
     public static class RandomC
     {
-        private static System.Random prng = new System.Random();
+        private static Random prng = new Random();
 
         /// <summary>
         /// Return a random part of the array
@@ -33,6 +30,39 @@ namespace ECS
         public static T Random<T>(List<T> input)
         {
             return input[prng.Next(0, input.Count)];
+        }
+
+        /// <summary>
+        /// Returns a random integer within a range
+        /// </summary>
+        /// <param name="low">Lower bound (inclusive)</param>
+        /// <param name="hi">Higher bound (exclusive)</param>
+        /// <returns></returns>
+        public static int Random(int low, int hi)
+        {
+            return prng.Next(low, hi);
+        }
+
+        /// <summary>
+        /// Returns a random double within a range
+        /// </summary>
+        /// <param name="low">Lower bound (inclusive)</param>
+        /// <param name="hi">Higher bound (exclusive)</param>
+        /// <returns></returns>
+        public static double Random(double low, double hi)
+        {
+            return prng.NextDouble() * (hi - low) + hi;
+        }
+
+        /// <summary>
+        /// Returns a random double within a range
+        /// </summary>
+        /// <param name="low">Lower bound (inclusive)</param>
+        /// <param name="hi">Higher bound (exclusive)</param>
+        /// <returns></returns>
+        public static float Random(float low, float hi)
+        {
+            return (float)prng.NextDouble() * (hi - low) + hi;
         }
     }
 }
