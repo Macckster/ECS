@@ -149,8 +149,8 @@ namespace ECS
         /// <summary>
         /// Draw an elipse
         /// </summary>
-        /// <param name="x">X Coord</param>
-        /// <param name="y">Y Coord</param>
+        /// <param name="x">X pos</param>
+        /// <param name="y">Y pos</param>
         /// <param name="rad1">Vertical radius</param>
         /// <param name="rad2">Horizontal radius</param>
         public static void Elipse(int x, int y, float rad1, float rad2)
@@ -171,7 +171,7 @@ namespace ECS
         }
 
         /// <summary>
-        /// Draw a arc
+        /// Draw a arc (Broken right now)
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -210,8 +210,8 @@ namespace ECS
         /// <summary>
         /// Draw a square
         /// </summary>
-        /// <param name="x">X coord</param>
-        /// <param name="y">Y coord</param>
+        /// <param name="x">X pos</param>
+        /// <param name="y">Y pos</param>
         /// <param name="sideLength">Length of each side</param>
         public static void Square(int x, int y, double sideLength)
         {
@@ -245,8 +245,8 @@ namespace ECS
         /// <summary>
         /// Draw a rect
         /// </summary>
-        /// <param name="x">X coord</param>
-        /// <param name="y">Y coord</param>
+        /// <param name="x">X pos</param>
+        /// <param name="y">Y pos</param>
         /// <param name="width">Width of the rect</param>
         /// <param name="height">Height of the rect</param>
         public static void Rect(int x, int y, double width, double height)
@@ -278,6 +278,17 @@ namespace ECS
             shapeList.Add(new Shape(colour, PrimitiveType.Polygon, posX, posY));
         }
 
+        /// <summary>
+        /// Draw text to the screen
+        /// </summary>
+        /// <param name="text">Text to draw</param>
+        /// <param name="size">Font size</param>
+        /// <param name="x">X pos</param>
+        /// <param name="y">Y pos</param>
+        public static void Text(string text, int size, int x, int y)
+        {
+            
+        }
 
         /// <summary>
         /// begin a new custom shape
@@ -293,8 +304,8 @@ namespace ECS
         /// <summary>
         /// Add a vertex to the shape
         /// </summary>
-        /// <param name="x">X coord</param>
-        /// <param name="y">Y coord</param>
+        /// <param name="x">X pos</param>
+        /// <param name="y">Y pos</param>
         public static void Vertex(int x, int y)
         {
             customX.Add(x);
@@ -512,7 +523,6 @@ namespace ECS
             windowHeight = window.Height;
             windowWidth = window.Width;
             Console.WriteLine("Resize Detected! New dimensions: {0} x {1}", windowWidth, windowHeight);
-            
         }
 
         private static void Window_MouseMove(object sender, MouseMoveEventArgs e)
