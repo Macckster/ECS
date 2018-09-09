@@ -187,11 +187,11 @@ namespace ECS
 
             for (int i = 0; i < degrees; i++)
             {
-                posX[i] = (Math.Cos(i) * width);// + ((float)x / (windowWidth / 2)) - 1;
-                posY[i] = (Math.Sin(i) * height);// - ((float)y / (windowHeight / 2)) + 1;
+                posX[i] = (Math.Cos(i) * width) + ((float)x / (windowWidth / 2)) - 1;
+                posY[i] = (Math.Sin(i) * height) - ((float)y / (windowHeight / 2)) + 1;
             }
 
-            shapeList.Add(new Shape(colour, PrimitiveType.LineStrip, posX, posY));
+            shapeList.Add(new Shape(colour, PrimitiveType.Polygon, posX, posY));
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace ECS
         }
 
         /// <summary>
-        /// Set the thickness of the shapes you draw
+        /// Broken currently
         /// </summary>
         /// <param name="t">Thickness</param>
         public static void StrokeWeight(float t)
