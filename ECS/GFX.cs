@@ -5,6 +5,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using static ECS.MathC;
+using static ECS.Colours;
 
 namespace ECS
 {
@@ -56,6 +57,8 @@ namespace ECS
 
         private static readonly int startFrequency = 60;
 
+        private static EventHandler<KeyboardKeyEventArgs> keyPressedFunction;
+
         /// <summary>
         /// Create a new graphics window
         /// </summary>
@@ -74,6 +77,12 @@ namespace ECS
             window.UpdateFrame += OnFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
+
+            if (keyPressedFunction != null)
+            {
+                window.KeyDown += keyPressedFunction;
+            }
+
             window.Run(startFrequency);
         }
 
@@ -95,6 +104,12 @@ namespace ECS
             window.Load += OnLoad;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
+
+            if (keyPressedFunction != null)
+            {
+                window.KeyDown += keyPressedFunction;
+            }
+
             window.Run(startFrequency);
         }
 
@@ -119,6 +134,12 @@ namespace ECS
             window.Unload += OnExit;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
+
+            if (keyPressedFunction != null)
+            {
+                window.KeyDown += keyPressedFunction;
+            }
+
             window.Run(startFrequency);
         }
 
@@ -457,6 +478,15 @@ namespace ECS
         public static void MousePressed(EventHandler<MouseButtonEventArgs> e)
         {
             window.MouseDown += e;
+        }
+
+        /// <summary>
+        /// Add function to be called whenever a keyboard key has been pressed
+        /// </summary>
+        /// <param name="e">Function to be called</param>
+        public static void KeyPressed(EventHandler<KeyboardKeyEventArgs> e)
+        {
+            keyPressedFunction = e;
         }
 
         /// <summary>
