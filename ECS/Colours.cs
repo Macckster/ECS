@@ -146,6 +146,35 @@ namespace ECS
         /// Hotpink colour
         /// </summary>
         public readonly static Colour Hotpink = new Colour(255, 105, 180);
+<<<<<<< HEAD
+=======
+
+        /// <summary>
+        /// Yellow Colour
+        /// </summary>
+        public readonly static Colour Yellow = new Colour(255, 255, 0);
+    }
+
+    /// <summary>
+    /// An RGB based colour
+    /// </summary>
+    public class Colour
+    {
+        /// <summary>
+        /// Amount of red
+        /// </summary>
+        public int r;
+
+        /// <summary>
+        /// Amount of green
+        /// </summary>
+        public int g;
+
+        /// <summary>
+        /// amount of blue
+        /// </summary>
+        public int b;
+>>>>>>> 4afbecc0d42b0040560364daf8d561b9566e12ec
 
         /// <summary>
         /// An RGB based colour
