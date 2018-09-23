@@ -1,4 +1,5 @@
 ﻿using static ECS.MathC;
+using ECS.Vectors;
 
 namespace ECS
 {
@@ -207,6 +208,16 @@ namespace ECS
                 this.g = g;
                 this.b = b;
                 this.a = a;
+            }
+
+            public static Colour Lerp(Colour a, Colour b, float percent)
+            {
+                Vector3 a1 = new Vector3(a.r, a.g, a.b);
+                Vector3 b1 = new Vector3(b.r, b.g, b.b);
+
+                Vector3 c = Vector3.Lerp(a1, b1, percent);
+
+                return new Colour((int)c.x, (int)c.y, (int)c.z);
             }
         }
     }

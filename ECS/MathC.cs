@@ -34,12 +34,43 @@ namespace ECS
         /// <summary>
         /// Eulers number
         /// </summary>
-        public const double E = 2.71828182846;
+        public const double e = 2.71828182846;
 
         /// <summary>
         /// Convert degrees to radians
         /// </summary>
         public const double DEG2RAD = 0.0174532925;
+        
+        /// <summary>
+        /// Get the square root of a number
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static double Sqrt(double a)
+        {
+            return Math.Sqrt(a);
+        }
+
+        /// <summary>
+        /// Raise a number to a power
+        /// </summary>
+        /// <param name="a">Base</param>
+        /// <param name="b">Exponent</param>
+        /// <returns></returns>
+        public static double Pow(double a, double b)
+        {
+            return Math.Pow(a, b);
+        }
+        
+        /// <summary>
+        /// Return e raised to a power
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static double Exp(double a)
+        {
+            return Pow(e, a);
+        }
 
         /// <summary>
         /// Map a number to a range
