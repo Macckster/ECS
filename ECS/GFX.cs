@@ -55,7 +55,7 @@ namespace ECS
         private static List<double> customX = new List<double>();
         private static List<double> customY = new List<double>();
 
-        private static readonly int startFrequency = 60;
+        private static int startFrequency = 60;
 
         private static EventHandler<KeyboardKeyEventArgs> keyPressedFunction;
 
@@ -469,6 +469,15 @@ namespace ECS
             float a1 = Map((float)a, 0, 255, 0, 1);
 
             colour = new Color4(r1, g1, b1, a1);
+        }
+
+        /// <summary>
+        /// Set the display framerate before startup
+        /// </summary>
+        /// <param name="fps"></param>
+        public static void Framerate(int fps)
+        {
+            startFrequency = fps;
         }
 
         /// <summary>

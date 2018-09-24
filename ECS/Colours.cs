@@ -210,14 +210,37 @@ namespace ECS
                 this.a = a;
             }
 
-            public static Colour Lerp(Colour a, Colour b, float percent)
+            /// <summary>
+            /// Generate a new colour with alpha
+            /// </summary>
+            /// <param name="r"></param>
+            /// <param name="g"></param>
+            /// <param name="b"></param>
+            public Colour(float r, float g, float b)
             {
-                Vector3 a1 = new Vector3(a.r, a.g, a.b);
-                Vector3 b1 = new Vector3(b.r, b.g, b.b);
+                r = Clamp(r, 0, 255);
+                g = Clamp(g, 0, 255);
+                b = Clamp(b, 0, 255);
+                a = Clamp(a, 0, 255);
 
-                Vector3 c = Vector3.Lerp(a1, b1, percent);
+                this.r = (int)r;
+                this.g = (int)g;
+                this.b = (int)b;
+                a = 255;
+            }
 
-                return new Colour((int)c.x, (int)c.y, (int)c.z);
+            public Colour Lerp(Colour next, float percent)
+            {
+                 return new Colour(
+                    r + (next.r - r) * percent,
+                    g + (next.g - g) * percent,
+                    b + (next.b - b) * percent); 
+                    
+            }
+
+            public override string ToString()
+            {
+                return string.Format("r: {0}, g: {1}, b: {2}", r, g, b);
             }
         }
     }

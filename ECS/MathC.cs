@@ -65,11 +65,41 @@ namespace ECS
         /// <summary>
         /// Return e raised to a power
         /// </summary>
-        /// <param name="a"></param>
+        /// <param name="a">Exponent</param>
         /// <returns></returns>
         public static double Exp(double a)
         {
             return Pow(e, a);
+        }
+
+        /// <summary>
+        /// Calculate sin(a)
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static double Sin(double a)
+        {
+            return Math.Sin(a);
+        }
+
+        /// <summary>
+        /// Calculate cos(a)
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static double Cos(double a)
+        {
+            return Math.Cos(a);
+        }
+
+        /// <summary>
+        /// Calculate Tan(a)
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static double Tan(double a)
+        {
+            return Math.Tan(a);
         }
 
         /// <summary>
