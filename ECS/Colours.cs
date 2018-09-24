@@ -229,6 +229,12 @@ namespace ECS
                 a = 255;
             }
 
+            /// <summary>
+            /// Linearyl interpolate between this colour and another one
+            /// </summary>
+            /// <param name="next">Next colour</param>
+            /// <param name="percent">Percent of the way there</param>
+            /// <returns></returns>
             public Colour Lerp(Colour next, float percent)
             {
                  return new Colour(
@@ -238,6 +244,10 @@ namespace ECS
                     
             }
 
+            /// <summary>
+            /// Convert this to a string
+            /// </summary>
+            /// <returns></returns>
             public override string ToString()
             {
                 return string.Format("r: {0}, g: {1}, b: {2}", r, g, b);
