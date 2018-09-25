@@ -48,6 +48,8 @@ namespace ECS
         /// </summary>
         public static int mouseY;
 
+        private static Action OnFrameUpdate;
+
         private static float thickness = 1;
         private static Color4 colour;
 
@@ -67,14 +69,14 @@ namespace ECS
         /// <param name="title">Title of the window</param>
         /// <param name="OnFrameUpdate">Will be called every frame</param>
         /// <returns></returns>
-        public static void CreateWindow(int width, int height, string title, EventHandler<FrameEventArgs> OnFrameUpdate)
+        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate)
         {
             windowWidth = width;
             windowHeight = height;
             window = new GameWindow(width, height, GraphicsMode.Default, title);
             window.Load += Window_Load;
             window.UpdateFrame += Window_RenderFrame;
-            window.UpdateFrame += OnFrameUpdate;
+            OnFrameUpdate = onFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
 
@@ -95,13 +97,13 @@ namespace ECS
         /// <param name="onFrameUpdate">Will be called every frame</param>
         /// <param name="OnLoad">Will be called on load</param>
         /// <returns></returns>
-        public static void CreateWindow(int width, int height, string title, EventHandler<FrameEventArgs> onFrameUpdate, EventHandler<EventArgs> OnLoad)
+        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, EventHandler<EventArgs> OnLoad)
         {
             window = new GameWindow(width, height, GraphicsMode.Default, title);
             window.Load += Window_Load;
-            window.UpdateFrame += onFrameUpdate;
             window.UpdateFrame += Window_RenderFrame;
             window.Load += OnLoad;
+            OnFrameUpdate = onFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
 
@@ -123,14 +125,14 @@ namespace ECS
         /// <param name="OnLoad">Will be called on load</param>
         /// <param name="OnExit">Will be called when the window exits</param>
         /// <returns></returns>
-        public static void CreateWindow(int width, int height, string title, EventHandler<FrameEventArgs> onFrameUpdate, 
+        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, 
             EventHandler<EventArgs> OnLoad, EventHandler<EventArgs> OnExit)
         {
             window = new GameWindow(width, height, GraphicsMode.Default, title);
             window.Load += Window_Load;
-            window.UpdateFrame += onFrameUpdate;
             window.UpdateFrame += Window_RenderFrame;
             window.Load += OnLoad;
+            OnFrameUpdate = onFrameUpdate;
             window.Unload += OnExit;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
