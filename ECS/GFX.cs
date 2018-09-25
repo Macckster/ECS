@@ -14,6 +14,8 @@ namespace ECS
     /// </summary>
     public static class GFX
     {
+        public enum MouseButtons {Left, Right, Middle}
+
         static List<Shape> shapeList = new List<Shape>();
 
         static GameWindow window;
@@ -49,6 +51,9 @@ namespace ECS
         public static int mouseY;
 
         private static Action OnFrameUpdate;
+        private static Action OnLoad;
+        private static Action OnExit;
+        private static Action<MouseButtons> OnMouseDown;
 
         private static float thickness = 1;
         private static Color4 colour;
@@ -79,11 +84,7 @@ namespace ECS
             OnFrameUpdate = onFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
-
-            if (keyPressedFunction != null)
-            {
-                window.KeyDown += keyPressedFunction;
-            }
+            window.MouseDown += Window_MouseDown;
 
             window.Run(startFrequency);
         }
@@ -97,20 +98,15 @@ namespace ECS
         /// <param name="onFrameUpdate">Will be called every frame</param>
         /// <param name="OnLoad">Will be called on load</param>
         /// <returns></returns>
-        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, EventHandler<EventArgs> OnLoad)
+        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, Action onLoad)
         {
             window = new GameWindow(width, height, GraphicsMode.Default, title);
             window.Load += Window_Load;
             window.UpdateFrame += Window_RenderFrame;
-            window.Load += OnLoad;
+            OnLoad = onLoad;
             OnFrameUpdate = onFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
-
-            if (keyPressedFunction != null)
-            {
-                window.KeyDown += keyPressedFunction;
-            }
 
             window.Run(startFrequency);
         }
@@ -125,23 +121,17 @@ namespace ECS
         /// <param name="OnLoad">Will be called on load</param>
         /// <param name="OnExit">Will be called when the window exits</param>
         /// <returns></returns>
-        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, 
-            EventHandler<EventArgs> OnLoad, EventHandler<EventArgs> OnExit)
+        public static void CreateWindow(int width, int height, string title, Action onFrameUpdate,
+           Action onLoad, Action onExit)
         {
             window = new GameWindow(width, height, GraphicsMode.Default, title);
             window.Load += Window_Load;
             window.UpdateFrame += Window_RenderFrame;
-            window.Load += OnLoad;
+            OnLoad = onLoad;
             OnFrameUpdate = onFrameUpdate;
-            window.Unload += OnExit;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
-
-            if (keyPressedFunction != null)
-            {
-                window.KeyDown += keyPressedFunction;
-            }
-
+            OnExit = onExit;
             window.Run(startFrequency);
         }
 
@@ -482,13 +472,11 @@ namespace ECS
             startFrequency = fps;
         }
 
-        /// <summary>
-        /// Add function to be called whenever a mousebutton is pressed
-        /// </summary>
-        /// <param name="e">Function to be called</param>
-        public static void MousePressed(EventHandler<MouseButtonEventArgs> e)
+        private static void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            window.MouseDown += e;
+            MouseButtons b = MouseButtons.Left;
+
+            OnMouseDown?.Invoke(b);
         }
 
         /// <summary>
@@ -521,10 +509,11 @@ namespace ECS
 
         private static void Window_RenderFrame(object sender, FrameEventArgs e)
         {
+            OnFrameUpdate?.Invoke(); //If OnFrameUpdate != null
+
             if (debug)
                 Debug();
 
-            framecount++;
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             foreach (Shape s in shapeList)
@@ -557,6 +546,8 @@ namespace ECS
 
             GL.Viewport(0, 0, windowWidth, windowHeight);
             GL.ClearColor(Color4.Black);
+
+            OnLoad?.Invoke(); //If OnLoad != null
         }
 
         private static void Window_Resize(object sender, EventArgs e)
