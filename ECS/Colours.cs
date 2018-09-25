@@ -7,6 +7,7 @@ namespace ECS
     /// </summary>
     public static class Colours
     {
+        #region Pre-Defined Colours
         /// <summary>
         /// Yellow Colour
         /// </summary>
@@ -146,6 +147,8 @@ namespace ECS
         /// Hotpink colour
         /// </summary>
         public readonly static Colour Hotpink = new Colour(255, 105, 180);
+
+        #endregion
 
         /// <summary>
         /// Linearly interpolate between two colours

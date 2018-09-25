@@ -14,6 +14,9 @@ namespace ECS
     /// </summary>
     public static class GFX
     {
+        /// <summary>
+        /// Enum of mouse buttons
+        /// </summary>
         public enum MouseButtons {Left, Right, Middle}
 
         static List<Shape> shapeList = new List<Shape>();
@@ -72,7 +75,7 @@ namespace ECS
         /// <param name="width">Width in pixels of window</param>
         /// <param name="height">Height in pixels of window</param>
         /// <param name="title">Title of the window</param>
-        /// <param name="OnFrameUpdate">Will be called every frame</param>
+        /// <param name="onFrameUpdate">Will be called every frame</param>
         /// <returns></returns>
         public static void CreateWindow(int width, int height, string title, Action onFrameUpdate)
         {
@@ -96,7 +99,7 @@ namespace ECS
         /// <param name="height">Height in pixels of window</param>
         /// <param name="title">Title of the window</param>
         /// <param name="onFrameUpdate">Will be called every frame</param>
-        /// <param name="OnLoad">Will be called on load</param>
+        /// <param name="onLoad">Will be called on load</param>
         /// <returns></returns>
         public static void CreateWindow(int width, int height, string title, Action onFrameUpdate, Action onLoad)
         {
@@ -118,8 +121,8 @@ namespace ECS
         /// <param name="height">Height in pixels of window</param>
         /// <param name="title">Title of the window</param>
         /// <param name="onFrameUpdate">Will be called every frame</param>
-        /// <param name="OnLoad">Will be called on load</param>
-        /// <param name="OnExit">Will be called when the window exits</param>
+        /// <param name="onLoad">Will be called on load</param>
+        /// <param name="onExit">Will be called when the window exits</param>
         /// <returns></returns>
         public static void CreateWindow(int width, int height, string title, Action onFrameUpdate,
            Action onLoad, Action onExit)
@@ -511,7 +514,7 @@ namespace ECS
 
         private static void Window_RenderFrame(object sender, FrameEventArgs e)
         {
-            OnFrameUpdate?.Invoke(); //If OnFrameUpdate != null
+            OnFrameUpdate?.Invoke(); //If OnFrameUpdate != null then invoke it
 
             if (debug)
                 Debug();
@@ -549,7 +552,7 @@ namespace ECS
             GL.Viewport(0, 0, windowWidth, windowHeight);
             GL.ClearColor(Color4.Black);
 
-            OnLoad?.Invoke(); //If OnLoad != null
+            OnLoad?.Invoke(); //If OnLoad != null then invoke it
         }
 
         private static void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -572,7 +575,7 @@ namespace ECS
                     break;
             }
 
-            OnMouseDown?.Invoke(b);
+            OnMouseDown?.Invoke(b); // If OnMouseDown != null then invoke it
         }
 
 
