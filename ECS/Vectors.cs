@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECS.Vectors
 {
@@ -105,7 +101,7 @@ namespace ECS.Vectors
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            ($"x:{x} y:{y} z:{z}");
+            ($"{x}, {y}, {z}");
 
 
         /// <summary>
@@ -231,7 +227,7 @@ namespace ECS.Vectors
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            ($"x:{x} y:{y}");
+            ($"{x}, {y}");
 
         /// <summary>
         /// Linerarly interpolate between two vectors give a percent of the way there

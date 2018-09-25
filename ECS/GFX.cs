@@ -4,7 +4,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
-using static ECS.MathC;
+using static ECS.Maths;
 using static ECS.Colours;
 
 namespace ECS
@@ -473,12 +473,21 @@ namespace ECS
         }
 
         /// <summary>
-        /// Add function to be called whenever a keyboard key has been pressed
+        /// Set function to be called whenever a keyboard key has been pressed
         /// </summary>
         /// <param name="e">Function to be called</param>
         public static void KeyPressed(EventHandler<KeyboardKeyEventArgs> e)
         {
             keyPressedFunction = e;
+        }
+
+        /// <summary>
+        /// Set a function to be called whenever the user presses a mouse button
+        /// </summary>
+        /// <param name="onMouseDown"></param>
+        public static void MousePresed(Action<MouseButtons> onMouseDown)
+        {
+            OnMouseDown = onMouseDown;
         }
 
         /// <summary>

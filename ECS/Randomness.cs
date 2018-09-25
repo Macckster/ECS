@@ -6,7 +6,7 @@ namespace ECS
     /// <summary>
     /// Class of functions that make use of randomness
     /// </summary>
-    public static class RandomC
+    public static class Randomness
     {
         private static Random prng = new Random();
 

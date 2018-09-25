@@ -1,5 +1,4 @@
-﻿using static ECS.MathC;
-using ECS.Vectors;
+﻿using static ECS.Maths;
 
 namespace ECS
 {
@@ -149,6 +148,21 @@ namespace ECS
         public readonly static Colour Hotpink = new Colour(255, 105, 180);
 
         /// <summary>
+        /// Linearly interpolate between two colours
+        /// </summary>
+        /// <param name="a">First colour</param>
+        /// <param name="b">Second colour</param>
+        /// <param name="percent">Percent of the way there</param>
+        /// <returns></returns>
+        public static Colour Lerp(Colour a, Colour b, float percent)
+        {
+            return new Colour(
+                a.r + (b.r - a.r) * percent,
+                a.g + (b.g - a.g) * percent,
+                a.b + (b.b - a.b) * percent);
+        }
+
+        /// <summary>
         /// An RGB based colour
         /// </summary>
         public class Colour
@@ -230,27 +244,12 @@ namespace ECS
             }
 
             /// <summary>
-            /// Linearyl interpolate between this colour and another one
-            /// </summary>
-            /// <param name="next">Next colour</param>
-            /// <param name="percent">Percent of the way there</param>
-            /// <returns></returns>
-            public Colour Lerp(Colour next, float percent)
-            {
-                 return new Colour(
-                    r + (next.r - r) * percent,
-                    g + (next.g - g) * percent,
-                    b + (next.b - b) * percent); 
-                    
-            }
-
-            /// <summary>
             /// Convert this to a string
             /// </summary>
             /// <returns></returns>
             public override string ToString()
             {
-                return string.Format("r: {0}, g: {1}, b: {2}", r, g, b);
+                return string.Format("{0}, {1}, {2}", r, g, b);
             }
         }
     }

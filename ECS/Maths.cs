@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECS
 {
     /// <summary>
     /// Math Class
     /// </summary>
-    public static class MathC
+    public static class Maths
     {
         /// <summary>
-        /// PI
+        /// Circle constant PI
         /// </summary>
         public const double PI = 3.14159265359;
 
@@ -27,7 +23,7 @@ namespace ECS
         public const double QUARTER_PI = PI / 4;
 
         /// <summary>
-        /// TAU
+        /// TAU (two times PI)
         /// </summary>
         public const double TAU = PI * 2;
 
