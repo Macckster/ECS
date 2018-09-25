@@ -472,13 +472,6 @@ namespace ECS
             startFrequency = fps;
         }
 
-        private static void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MouseButtons b = MouseButtons.Left;
-
-            OnMouseDown?.Invoke(b);
-        }
-
         /// <summary>
         /// Add function to be called whenever a keyboard key has been pressed
         /// </summary>
@@ -549,6 +542,30 @@ namespace ECS
 
             OnLoad?.Invoke(); //If OnLoad != null
         }
+
+        private static void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MouseButtons b = MouseButtons.Left;
+
+            switch (e.Button)
+            {
+                case MouseButton.Left:
+                    b = MouseButtons.Left;
+                    break;
+                case MouseButton.Right:
+                    b = MouseButtons.Right;
+                    break;
+                case MouseButton.Middle:
+                    b = MouseButtons.Middle;
+                    break;
+                default:
+                    b = MouseButtons.Left;
+                    break;
+            }
+
+            OnMouseDown?.Invoke(b);
+        }
+
 
         private static void Window_Resize(object sender, EventArgs e)
         {
