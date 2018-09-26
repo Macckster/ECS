@@ -33,7 +33,7 @@ namespace ECS
         public const double e = 2.71828182846;
 
         /// <summary>
-        /// Convert degrees to radians
+        /// Convert degrees to radians (This is PI/180)
         /// </summary>
         public const double DEG2RAD = 0.0174532925;
         
@@ -192,7 +192,33 @@ namespace ECS
         }
 
         /// <summary>
-        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int[,] MatrixMult(int[,] a, int[,] b)
+        {
+            int[,] ret = new int[a.GetLength(0), b.GetLength(1)];
+
+            for (int i = 0; i < ret.GetLength(1); i++)
+            {
+                for (int j = 0; j < ret.GetLength(0); j++)
+                {
+                    int sum = 0;
+
+                    for (int k = 0; k < a.GetLength(0); k++)
+                    {
+                        sum += a[i, k] * b[k, j];
+                    }
+
+                    ret[i, j] = sum;
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -201,7 +227,94 @@ namespace ECS
         {          
             float[,] ret = new float[a.GetLength(0),b.GetLength(1)];
 
+            for (int i = 0; i < ret.GetLength(1); i++)
+            {
+                for (int j = 0; j < ret.GetLength(0); j++)
+                {
+                    float sum = 0;
+
+                    for (int k = 0; k < a.GetLength(0); k++)
+                    {
+                        sum += a[i, k] * b[k, j];
+                    }
+
+                    ret[i, j] = sum;
+                }
+            }
+            
             return ret;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static double[,] MatrixMult(double[,] a, double[,] b)
+        {
+            double[,] ret = new double[a.GetLength(0), b.GetLength(1)];
+
+            for (int i = 0; i < ret.GetLength(1); i++)
+            {
+                for (int j = 0; j < ret.GetLength(0); j++)
+                {
+                    double sum = 0;
+
+                    for (int k = 0; k < a.GetLength(0); k++)
+                    {
+                        sum += a[i, k] * b[k, j];
+                    }
+
+                    ret[i, j] = sum;
+                }
+            }
+
+            return ret;
+        }
+        
+        /// <summary>
+        /// Print the values in a two dimensional array
+        /// </summary>
+        /// <param name="a">Array</param>
+        public static void Print(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.WriteLine(a[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Print the values in a two dimensional array
+        /// </summary>
+        /// <param name="a">Array</param>
+        public static void Print(float[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.WriteLine(a[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Print the values in a two dimensional array
+        /// </summary>
+        /// <param name="a">Array</param>
+        public static void Print(double[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.WriteLine(a[i, j]);
+                }
+            }
         }
     }
 }

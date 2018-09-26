@@ -208,13 +208,26 @@ namespace ECS
             }
 
             /// <summary>
+            /// Shorthand for creating a colour that goes between black and white
+            /// </summary>
+            /// <param name="a"></param>
+            public Colour(int a)
+            {
+                a = Clamp(a, 0, 255);
+
+                r = a;
+                g = a;
+                b = a;
+            }
+
+            /// <summary>
             /// Generate a new colour with alpha
             /// </summary>
             /// <param name="r"></param>
             /// <param name="g"></param>
             /// <param name="b"></param>
             /// <param name="a"></param>
-            public Colour(int r, int g, int b, int a) : this(r, g, b)
+            public Colour(int r, int g, int b, int a)
             {
                 r = Clamp(r, 0, 255);
                 g = Clamp(g, 0, 255);
