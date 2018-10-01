@@ -10,22 +10,22 @@ namespace ECS
         /// <summary>
         /// Circle constant PI
         /// </summary>
-        public const double PI = 3.14159265359;
+        public const double Pi = 3.14159265359;
 
         /// <summary>
         /// PI/2
         /// </summary>
-        public const double HALF_PI = PI / 2;
+        public const double Half_pi = Pi / 2;
 
         /// <summary>
         /// PI/4
         /// </summary>
-        public const double QUARTER_PI = PI / 4;
+        public const double Quarter_pi = Pi / 4;
 
         /// <summary>
         /// TAU (two times PI)
         /// </summary>
-        public const double TAU = PI * 2;
+        public const double Tau = Pi * 2;
 
         /// <summary>
         /// Eulers number
@@ -35,7 +35,7 @@ namespace ECS
         /// <summary>
         /// Convert degrees to radians (This is PI/180)
         /// </summary>
-        public const double DEG2RAD = 0.0174532925;
+        public const double Deg2rad = 0.0174532925;
         
         /// <summary>
         /// Get the square root of a number
@@ -96,6 +96,87 @@ namespace ECS
         public static double Tan(double a)
         {
             return Math.Tan(a);
+        }
+
+        /// <summary>
+        /// Compare two 2D arrays to see if they are the same
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool Compare(int[,] a, int [,] b)
+        {
+            if(a.GetLength(0) != b.GetLength(0) || a.GetLength(1) != b.GetLength(1))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if(a[i,j] != b[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Compare two 2D arrays to see if they are the same
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool Compare(float[,] a, float[,] b)
+        {
+            if (a.GetLength(0) != b.GetLength(0) || a.GetLength(1) != b.GetLength(1))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if (a[i, j] != b[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Compare two 2D arrays to see if they are the same
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool Compare(double[,] a, double[,] b)
+        {
+            if (a.GetLength(0) != b.GetLength(0) || a.GetLength(1) != b.GetLength(1))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if (a[i, j] != b[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         /// <summary>

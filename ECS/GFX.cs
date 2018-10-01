@@ -88,6 +88,7 @@ namespace ECS
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
             window.MouseDown += Window_MouseDown;
+            window.KeyDown += keyPressedFunction;
 
             window.Run(startFrequency);
         }
@@ -110,6 +111,7 @@ namespace ECS
             OnFrameUpdate = onFrameUpdate;
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
+            window.KeyDown += keyPressedFunction;
 
             window.Run(startFrequency);
         }
@@ -135,6 +137,8 @@ namespace ECS
             window.Resize += Window_Resize;
             window.MouseMove += Window_MouseMove;
             OnExit = onExit;
+            window.KeyDown += keyPressedFunction;
+
             window.Run(startFrequency);
         }
 

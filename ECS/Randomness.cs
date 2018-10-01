@@ -64,5 +64,14 @@ namespace ECS
         {
             return (float)prng.NextDouble() * (hi - low) + hi;
         }
+
+        /// <summary>
+        /// Return a value between 0 and 1
+        /// </summary>
+        /// <returns></returns>
+        public static double Random01()
+        {
+            return prng.NextDouble();
+        }
     }
 }
