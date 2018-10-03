@@ -647,8 +647,10 @@ namespace ECS
             mouseY = e.Y;
         }
 
-        static int LoadTexture(string filename)
-        {
+        static int LoadTexture(string filename) {
+
+            Console.WriteLine(filename);
+
             using (var bitmap = new Bitmap(filename))
             {
                 var texId = GL.GenTexture();
@@ -750,7 +752,7 @@ namespace ECS
 
     static class Settings
     {
-        public static string FontBitmapFilename = "test.png";
+        public static string FontBitmapFilename = "font.bmp";
         public static int GlyphsPerLine = 16;
         public static int GlyphLineCount = 16;
         public static int GlyphWidth = 11;
