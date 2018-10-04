@@ -527,7 +527,7 @@ namespace ECS
             window.Close();
         }
 
-        public static void DrawText(int x, int y, string text)
+        private static void DrawText(int x, int y, string text)
         {
             GL.Begin(PrimitiveType.Quads);
 
@@ -752,11 +752,11 @@ namespace ECS
 
     static class Settings
     {
-        public static string FontBitmapFilename = "font.bmp";
-        public static int GlyphsPerLine = 16;
-        public static int GlyphLineCount = 16;
-        public static int GlyphWidth = 11;
-        public static int GlyphHeight = 22;
+        public static string FontBitmapFilename = "Font.png";
+        public static int GlyphsPerLine = 93;
+        public static int GlyphLineCount = 1;
+        public static int GlyphWidth = 10;
+        public static int GlyphHeight = 16;
 
         public static int CharXSpacing = 11;
 
